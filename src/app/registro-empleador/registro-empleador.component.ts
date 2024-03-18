@@ -4,7 +4,7 @@ import {FormControl, FormGroup, FormsModule, Validators , ReactiveFormsModule, F
 import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
 
 @Component({
-    selector: 'app-registro-empleado',
+    selector: 'app-registro-empleador',
     standalone: true,
     templateUrl: './registro-empleador.component.html',
     styleUrl: './registro-empleador.component.scss',
