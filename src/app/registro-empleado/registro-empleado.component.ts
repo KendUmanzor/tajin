@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, Validators , ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
+import { DatosService } from '../../services/datos.service';
 
 @Component({
     selector: 'app-registro-empleado',
@@ -13,7 +14,7 @@ import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
 export class RegistroEmpleadoComponent implements OnInit {
     submitted = false;
     registerForm!:FormGroup
-    constructor(private formBuilder: FormBuilder){}
+    constructor(private formBuilder: FormBuilder , private  servicioDatos:DatosService){}
     ngOnInit(): void {
         this.registerForm = this.formBuilder.group({
             nombre:[''],
@@ -40,7 +41,15 @@ onSubmit() {
     }
     location.href="/perfil";
     alert('Datos capturados\n\n' + JSON.stringify(this.registerForm.value))
+    this.enviarDatos();
     }
+
+    enviarDatos(){
+        const datos:FormBuilder=this.registerForm.value;
+        this.servicioDatos.setCompartirDatos(datos);
+
+    }
+   
 }
 
 
