@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
 import { DatosService } from '../../services/datos.service';
 import { FormBuilder } from '@angular/forms';
+import { sidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
     selector: 'app-perfil',
     standalone: true,
     templateUrl: './perfil.component.html',
     styleUrl: './perfil.component.scss',
-    imports: [NavSimpleComponent]
+    imports: [NavSimpleComponent,sidebarComponent]
 })
 export class PerfilComponent {
     datos!:FormBuilder;
@@ -21,8 +22,6 @@ export class PerfilComponent {
      
 
     }
-    c(){
-        
-    }
+   
 
 }

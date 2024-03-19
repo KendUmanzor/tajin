@@ -6,7 +6,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { SeleccionComponent } from './seleccion/seleccion.component';
 import { RegistroEmpleadoComponent } from './registro-empleado/registro-empleado.component';
 import { RegistroEmpleadorComponent } from './registro-empleador/registro-empleador.component';
-import{InicioSesionComponent} from './inicio-sesion/inicio-sesion.component';
+import{sidebarComponent} from './sidebar/sidebar.component';
 
 export const routes: Routes = [
     {path: 'register', component:RegisterComponent},
@@ -15,7 +15,7 @@ export const routes: Routes = [
     {path:'seleccion',component:SeleccionComponent},
     {path:'registro/empleado',component:RegistroEmpleadoComponent},
     {path:'registro/empleador',component:RegistroEmpleadorComponent},
-    {path:'login',component:InicioSesionComponent},
+    {path:'login',component:sidebarComponent},
     {path: '', redirectTo: '/landing', pathMatch:'full'},
     {path:'**',component:PageNotFoundComponent}
     

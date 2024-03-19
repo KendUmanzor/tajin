@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   //correo:any='';
   //password:any='';
   submitted = false;
-  registerForm!:FormGroup
+  registerForm!:FormGroup;
   constructor(private formBuilder: FormBuilder){}
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
