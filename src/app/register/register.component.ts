@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, Validators , ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
+import { DatosService } from '../../services/datos.service';
 
 
 @Component({
@@ -16,8 +17,8 @@ export class RegisterComponent implements OnInit {
   //correo:any='';
   //password:any='';
   submitted = false;
-  registerForm!:FormGroup;
-  constructor(private formBuilder: FormBuilder){}
+  registerForm!:FormGroup
+  constructor(private formBuilder: FormBuilder,private servicedata:DatosService){}
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
@@ -42,6 +43,14 @@ onSubmit() {
       return;
   }
   location.href="perfil";
+  this.enviarDatos();
   alert('Datos capturados\n\n' + JSON.stringify(this.registerForm.value))
+  
+}
+enviarDatos(){
+  const datos:FormBuilder=this.registerForm.value;
+  this.servicedata.setCompartirDatos(datos,'keys');
+
+
 }
 }

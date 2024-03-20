@@ -13,4 +13,9 @@ export class sidebarComponent {
   toggleSidebar() {
     this.isExpanded = !this.isExpanded;
   }
+
+  logout(){
+    
+    localStorage.removeItem('keys');
+  }
 }

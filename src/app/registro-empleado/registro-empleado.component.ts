@@ -46,7 +46,7 @@ onSubmit() {
 
     enviarDatos(){
         const datos:FormBuilder=this.registerForm.value;
-        this.servicioDatos.setCompartirDatos(datos);
+        this.servicioDatos.setCompartirDatos(datos,'datos');
 
     }
    

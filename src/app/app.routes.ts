@@ -7,10 +7,14 @@ import { SeleccionComponent } from './seleccion/seleccion.component';
 import { RegistroEmpleadoComponent } from './registro-empleado/registro-empleado.component';
 import { RegistroEmpleadorComponent } from './registro-empleador/registro-empleador.component';
 import{sidebarComponent} from './sidebar/sidebar.component';
+import { autenticacionGuard } from './guard/autenticacion.guard';
 
 export const routes: Routes = [
     {path: 'register', component:RegisterComponent},
-    {path: 'perfil', component:PerfilComponent},
+    {
+        path: 'perfil', component:PerfilComponent,
+        canActivate:[autenticacionGuard]
+    },
     {path: 'landing', component:LandingComponent},
     {path:'seleccion',component:SeleccionComponent},
     {path:'registro/empleado',component:RegistroEmpleadoComponent},
