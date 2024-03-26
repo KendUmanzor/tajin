@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LandingComponent } from "./landing/landing.component";
+<<<<<<< HEAD
 import { sidebarComponent } from './sidebar/sidebar.component';
+=======
+import { HttpClientModule } from '@angular/common/http';
+>>>>>>> remotes/origin/master
 
 
 @Component({
@@ -9,7 +13,7 @@ import { sidebarComponent } from './sidebar/sidebar.component';
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [RouterOutlet, LandingComponent]
+    imports: [RouterOutlet, LandingComponent,HttpClientModule]
 })
 export class AppComponent {
   title = 'appweb';

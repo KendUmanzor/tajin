@@ -6,8 +6,12 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { SeleccionComponent } from './seleccion/seleccion.component';
 import { RegistroEmpleadoComponent } from './registro-empleado/registro-empleado.component';
 import { RegistroEmpleadorComponent } from './registro-empleador/registro-empleador.component';
+<<<<<<< HEAD
 import{sidebarComponent} from './sidebar/sidebar.component';
 import { autenticacionGuard } from './guard/autenticacion.guard';
+=======
+import { BusquedaComponent } from './busqueda/busqueda.component';
+>>>>>>> remotes/origin/master
 
 export const routes: Routes = [
     {path: 'register', component:RegisterComponent},
@@ -17,6 +21,7 @@ export const routes: Routes = [
     },
     {path: 'landing', component:LandingComponent},
     {path:'seleccion',component:SeleccionComponent},
+    {path:'busqueda',component:BusquedaComponent},
     {path:'registro/empleado',component:RegistroEmpleadoComponent},
     {path:'registro/empleador',component:RegistroEmpleadorComponent},
     {path:'login',component:sidebarComponent},
