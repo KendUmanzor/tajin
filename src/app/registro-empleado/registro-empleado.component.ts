@@ -2,7 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, Validators , ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
+<<<<<<< HEAD
 import { Router } from '@angular/router';
+=======
+import { DatosService } from '../../services/datos.service';
+>>>>>>> 1a45b858b48396fa5e23b533f5adb0247e72fd92
 
 @Component({
     selector: 'app-registro-empleado',
@@ -14,7 +18,11 @@ import { Router } from '@angular/router';
 export class RegistroEmpleadoComponent implements OnInit {
     submitted = false;
     registerForm!:FormGroup
+<<<<<<< HEAD
     constructor(private formBuilder: FormBuilder, private router:Router){}
+=======
+    constructor(private formBuilder: FormBuilder , private  servicioDatos:DatosService){}
+>>>>>>> 1a45b858b48396fa5e23b533f5adb0247e72fd92
     ngOnInit(): void {
         this.registerForm = this.formBuilder.group({
             nombre:[''],
@@ -42,7 +50,15 @@ onSubmit() {
     this.router.navigateByUrl('/perfil');
     console.log(this.registerForm.value);
     alert('Datos capturados\n\n' + JSON.stringify(this.registerForm.value))
+    this.enviarDatos();
     }
+
+    enviarDatos(){
+        const datos:FormBuilder=this.registerForm.value;
+        this.servicioDatos.setCompartirDatos(datos);
+
+    }
+   
 }
 
 

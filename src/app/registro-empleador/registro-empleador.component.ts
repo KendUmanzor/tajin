@@ -5,7 +5,7 @@ import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-registro-empleado',
+    selector: 'app-registro-empleador',
     standalone: true,
     templateUrl: './registro-empleador.component.html',
     styleUrl: './registro-empleador.component.scss',
