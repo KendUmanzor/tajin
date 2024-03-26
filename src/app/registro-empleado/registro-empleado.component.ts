@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, Validators , ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-registro-empleado',
@@ -13,7 +14,7 @@ import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
 export class RegistroEmpleadoComponent implements OnInit {
     submitted = false;
     registerForm!:FormGroup
-    constructor(private formBuilder: FormBuilder){}
+    constructor(private formBuilder: FormBuilder, private router:Router){}
     ngOnInit(): void {
         this.registerForm = this.formBuilder.group({
             nombre:[''],
@@ -38,7 +39,8 @@ onSubmit() {
     if (this.registerForm.invalid) {
         return;
     }
-    location.href="/perfil";
+    this.router.navigateByUrl('/perfil');
+    console.log(this.registerForm.value);
     alert('Datos capturados\n\n' + JSON.stringify(this.registerForm.value))
     }
 }

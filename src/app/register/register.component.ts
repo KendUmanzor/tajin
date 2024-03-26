@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, Validators , ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
+//import { ServicesService } from '../service/services.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class RegisterComponent implements OnInit {
   //password:any='';
   submitted = false;
   registerForm!:FormGroup
-  constructor(private formBuilder: FormBuilder){}
+  constructor(private formBuilder: FormBuilder,private router:Router){}
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
@@ -35,13 +37,15 @@ onSubmit() {
   if (this.f['password'].errors) {
     console.log(this.f['password'].errors);
   }
-
-
   // stop here if form is invalid
   if (this.registerForm.invalid) {
       return;
   }
-  location.href="perfil";
+
+  
+  this.router.navigateByUrl('/perfil');
+  console.log(this.registerForm.value);
   alert('Datos capturados\n\n' + JSON.stringify(this.registerForm.value))
 }
 }
+

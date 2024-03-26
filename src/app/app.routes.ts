@@ -6,12 +6,14 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { SeleccionComponent } from './seleccion/seleccion.component';
 import { RegistroEmpleadoComponent } from './registro-empleado/registro-empleado.component';
 import { RegistroEmpleadorComponent } from './registro-empleador/registro-empleador.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 export const routes: Routes = [
     {path: 'register', component:RegisterComponent},
     {path: 'perfil', component:PerfilComponent},
     {path: 'landing', component:LandingComponent},
     {path:'seleccion',component:SeleccionComponent},
+    {path:'busqueda',component:BusquedaComponent},
     {path:'registro/empleado',component:RegistroEmpleadoComponent},
     {path:'registro/empleador',component:RegistroEmpleadorComponent},
     {path: '', redirectTo: '/landing', pathMatch:'full'},
