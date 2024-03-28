@@ -13,9 +13,8 @@ import   {PerfilEmpresaComponent} from './perif-empresa/perfil-empresa.component
 
 export const routes: Routes = [
     {path: 'register', component:RegisterComponent},
-    {
-        path: 'perfil', component:PerfilComponent,
-        canActivate:[autenticacionGuard]
+    {path: 'perfil', component:PerfilComponent
+        //,canActivate:[autenticacionGuard]
     },
     {path: 'landing', component:LandingComponent},
     {path:'seleccion',component:SeleccionComponent},
