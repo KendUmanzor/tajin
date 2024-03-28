@@ -6,12 +6,10 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { SeleccionComponent } from './seleccion/seleccion.component';
 import { RegistroEmpleadoComponent } from './registro-empleado/registro-empleado.component';
 import { RegistroEmpleadorComponent } from './registro-empleador/registro-empleador.component';
-<<<<<<< HEAD
 import{sidebarComponent} from './sidebar/sidebar.component';
 import { autenticacionGuard } from './guard/autenticacion.guard';
-=======
 import { BusquedaComponent } from './busqueda/busqueda.component';
->>>>>>> remotes/origin/master
+import   {PerfilEmpresaComponent} from './perif-empresa/perfil-empresa.component';
 
 export const routes: Routes = [
     {path: 'register', component:RegisterComponent},
@@ -26,6 +24,7 @@ export const routes: Routes = [
     {path:'registro/empleador',component:RegistroEmpleadorComponent},
     {path:'login',component:sidebarComponent},
     {path: '', redirectTo: '/landing', pathMatch:'full'},
-    {path:'**',component:PageNotFoundComponent}
+  //{path:'**',component:PageNotFoundComponent},
+    {path:'empresa',component:PerfilEmpresaComponent}
     
 ];

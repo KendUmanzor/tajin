@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LandingComponent } from "./landing/landing.component";
-<<<<<<< HEAD
-import { sidebarComponent } from './sidebar/sidebar.component';
-=======
+//import { sidebarComponent } from './sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
->>>>>>> remotes/origin/master
 
 
 @Component({

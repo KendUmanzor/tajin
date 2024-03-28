@@ -2,12 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, Validators , ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
-<<<<<<< HEAD
 import { DatosService } from '../../services/datos.service';
-=======
 //import { ServicesService } from '../service/services.service';
 import { Router } from '@angular/router';
->>>>>>> remotes/origin/master
 
 
 @Component({
@@ -23,11 +20,7 @@ export class RegisterComponent implements OnInit {
   //password:any='';
   submitted = false;
   registerForm!:FormGroup
-<<<<<<< HEAD
-  constructor(private formBuilder: FormBuilder,private servicedata:DatosService){}
-=======
-  constructor(private formBuilder: FormBuilder,private router:Router){}
->>>>>>> remotes/origin/master
+  constructor(private formBuilder: FormBuilder,private servicedata:DatosService,private router:Router){}
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
@@ -49,15 +42,18 @@ onSubmit() {
   if (this.registerForm.invalid) {
       return;
   }
-<<<<<<< HEAD
-  location.href="perfil";
+  //location.href="perfil";
   this.enviarDatos();
-=======
+const e=this.registerForm.get('email')?.value;
+  if (e=='user@usuario.com'){
 
-  
-  this.router.navigateByUrl('/perfil');
+    this.router.navigateByUrl('/perfil');
+  }
+  if (e=='user@company.com'){
+
+    this.router.navigateByUrl('/empresa');
+  }
   console.log(this.registerForm.value);
->>>>>>> remotes/origin/master
   alert('Datos capturados\n\n' + JSON.stringify(this.registerForm.value))
   
 }
@@ -67,5 +63,8 @@ enviarDatos(){
 
 
 }
+
+  
+
 }
 
