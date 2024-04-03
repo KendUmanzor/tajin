@@ -22,7 +22,7 @@ export class BusquedaComponent {
   show() {
     this.comm.datos(this.busqueda.target).subscribe(x => this.mostrar=JSON.stringify(x,undefined,2));
 
-   //this.mostrar=JSON.stringify(x,null,2)
+    //this.mostrar=JSON.stringify(x,null,2)
     //this.mostrar= this.comm.datos().subscribe(x=> console.log(x))
     //this.srv.currentUser1.subscribe(x=> console.log(x));
     //console.log(this.srv.currentUserSubject.getValue());

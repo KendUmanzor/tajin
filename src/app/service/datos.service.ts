@@ -6,9 +6,9 @@ import { FormBuilder } from '@angular/forms';
   providedIn: 'root'
 })
 export class DatosService {
-private compartirDatos!:FormBuilder;
-public setCompartirDatos(data:FormBuilder){
-  localStorage.setItem('DATOS',JSON.stringify(data));
+private compartirDatos!:any;
+public setCompartirDatos(data:any,keyword:string){
+  localStorage.setItem(keyword,JSON.stringify(data));
   console.log('dato enviado:'+data);
 }
 public getCompartirDatos(): FormBuilder {
