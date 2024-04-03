@@ -1,19 +1,41 @@
 <app-nav-simple></app-nav-simple>
-<div class="flex flex-auto">
+<div class="flex flex-auto h-screen">
 
 
     <app-sidebar></app-sidebar>
-    <div class="flex flex-col justify-center gap-6">
-        
-        <div class="border-2 h-48 aspect-video ml-14">
-            <button class="bg-primary-700">Editar</button>
-        </div>
-        <div class="border-2 h-48 aspect-video ml-14">
-            <button class="bg-primary-700">Editar</button>
-        </div>
-        <div class="border-2 h-48 aspect-video ml-14">
-            <button class="bg-primary-700">Editar</button>
+    <div class="flex flex-col pt-10 pl-14 gap-6 bg-[url('')]  w-screen" >
+        <div class="text-xl">Modificar correo y contraseña</div>
+        <div class="  border-2 h-max w-max min-w-min  rounded-md p-3">
+            <ul >
+                <li >Estás registrado con el e-mail user&#64;usuario.com. 
+                    <br>A esta dirección te enviaremos las notificaciones sobre nuevas ofertas y tus postulaciones.</li>
+                    <li class=" flex justify-end">
+                        
+                        <button class="bg-primary-700 mt-6 rounded-md px-2 text-white ">Editar</button>
+                    </li>
+                </ul></div>
+                <div class="text-xl">Editar datos de perfil</div>
+                    <div class="border-2 h-max w-max min-w-min  rounded-md p-4">
+                        <ul>
+                            <li>Haz que tu perfil hable por ti. Actualiza tus datos personales,<br>cambia tu foto y ajusta tus preferencias para una experiencia más personalizada.</li>
+                            <li class=" flex justify-end">
+                                
+                                <button class="bg-primary-700 mt-6 rounded-md px-2 text-white  ">Editar</button>
+                            </li>
+                        </ul>
+                    </div>
+            
+                        <div class="text-xl">Borrar tu cuenta</div>
+        <div class="relative border-2 h-max w-max min-w-min  rounded-md p-4 flex justify-between items-start">
+            <ul>
+                <li>Esta opción hace que tu cuenta  se elimine de manera definitiva <br> junto con toda tu actividad en la paginay todos los servicios contratados hasta la fecha</li>
+                <li class=" flex justify-end">
+                
+                    <button class="bg-primary-700 mt-6 rounded-md px-2 text-white">Editar</button>
+                </li>
+            </ul>
         </div> 
         
     </div>
 </div>
+<app-foot></app-foot>
