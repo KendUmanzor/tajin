@@ -10,8 +10,10 @@ import{sidebarComponent} from './sidebar/sidebar.component';
 import { autenticacionGuard } from './guard/autenticacion.guard';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import   {PerfilEmpresaComponent} from './perif-empresa/perfil-empresa.component';
+import { MenuComponent } from './menu/menu.component';
 
 export const routes: Routes = [
+    {path:'menu',component:MenuComponent},
     {path: 'register', component:RegisterComponent},
     {path: 'perfil', component:PerfilComponent
         //,canActivate:[autenticacionGuard]
