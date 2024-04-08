@@ -7,6 +7,7 @@ import { CommService } from '../service/comm.service';
 import { NavperfilComponent } from "../navperfil/navperfil.component";
 import { FormsModule } from '@angular/forms'; // Importa FormsModule aquí
 import { Router } from '@angular/router';
+import { PerfilComponent } from '../perfil/perfil.component';
 @Component({
   selector: 'app-config',
   standalone: true,
@@ -16,15 +17,13 @@ import { Router } from '@angular/router';
 })
 export class ConfigComponent implements OnInit {
   
-  nuevosDatos: { nombre: string; apellido: string; correo: string; oficio1: string; oficio2: string; }[] = [];
-
+id:any;
   datos=
     {
-      nombre: 'Mario',
-      apellido: 'Umanzor',
-      correo: 'glaconsa2014@gmail.com',
-      oficio1: 'Ingeniero en Sistemas',
-      oficio2: 'Fisicoculturista'
+      nombre: '',
+      apellido: '',
+      oficio1: '',
+      oficio2: ''
     }
   ;
   mostrar:any
@@ -32,22 +31,16 @@ export class ConfigComponent implements OnInit {
   ngOnInit(): void {
   
   }
+  
+  
 
   onSubmit() {
-    this.login();
+
     
-    this.router.navigateByUrl('/perfil');
-  }
-  login() {
-    this.nuevosDatos.push(this.datos);
-    
-      console.log(this.nuevosDatos);
-      this.comm.enviarDatos(this.nuevosDatos);
-      this.buscar(this.datos.correo)
-    }
-  buscar(datos:any){
-    this.comm.datos(datos).subscribe((data) => {
-      this.mostrar = data;
-      console.log(data)})
+    this.comm.actualizarDatos(this.datos).subscribe(x=>{
+      console.log(x)
+    })
+
+    this.router.navigateByUrl('/register');
   }
 }

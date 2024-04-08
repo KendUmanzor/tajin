@@ -9,24 +9,26 @@ export class CommService {
   
   private datosSubject = new BehaviorSubject<any>(null);
   datos$ = this.datosSubject.asObservable();
+  ID=''
   constructor(private http: HttpClient) { }
   datos(correo:string): Observable<any> {
   
-    return this.http.post('http://localhost:3200',{dato: correo })
+    return this.http.post('http://localhost:3200/buscar',{dato: correo })
   }
+  actualizarDatos(nuevosDatos:any) {
+    
+    return this.http.post('http://localhost:3200/mod',{nuevosDatos})
   
-  login(user: any): Observable<any> {
-    return this.http.post('http://localhost:3200', user);
   }
 
+
   guardarDatos(datos: any[]) {
+    
     this.datosSubject.next(datos);
   }
-  actualizarDatos(nuevosDatos: { nombre: string; apellido: string; oficio1: string; oficio2: string; }[]) {
-    this.datosSubject.next(nuevosDatos);
+  guardarID(id:any){
+    this.ID=id
+    
+
   }
-  enviarDatos(datos: any) {
-    return this.http.post<any>('http://localhost:3200', datos);
-  }
-  }
-  
+}

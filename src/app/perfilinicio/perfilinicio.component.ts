@@ -5,15 +5,17 @@ import { FormBuilder } from '@angular/forms';
 import { RegisterComponent } from '../register/register.component';
 import { CommService } from '../service/comm.service';
 import { NavperfilComponent } from "../navperfil/navperfil.component";
+import { sidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
-    selector: 'app-perfil',
+    selector: 'app-perfilinicio',
     standalone: true,
-    templateUrl: './perfil.component.html',
-    styleUrl: './perfil.component.scss',
-    imports: [NavSimpleComponent, NavperfilComponent]
+    templateUrl: './perfilinicio.component.html',
+    styleUrl: './perfilinicio.component.scss',
+    imports: [NavSimpleComponent, sidebarComponent]
 })
-export class PerfilComponent implements OnInit{
+
+export class PerfilInicioComponent implements OnInit{
     datos!:FormBuilder;
     id:any;
     nombre:any;
@@ -22,6 +24,8 @@ export class PerfilComponent implements OnInit{
     oficio2:any;
     correo:any;
     edad:any;
+    telefono=''
+    ubicacion:any
     /*ngOnInit(){
         this.datos=this.servicioDatos.getCompartirDatos();
         console.log(this.datos);
@@ -41,6 +45,7 @@ export class PerfilComponent implements OnInit{
             this.oficio1 = primerObjeto.oficio1;
             this.oficio2 = primerObjeto.oficio2;
             this.edad=primerObjeto.edad;
+            this.ubicacion=primerObjeto.ubicacion
           }
         });
       }

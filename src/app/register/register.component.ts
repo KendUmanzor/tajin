@@ -27,15 +27,16 @@ export class RegisterComponent{
 onsubmit(){
   
   this.login(this.email);
-  console.log(this.mostrar)
-  this.router.navigateByUrl('/perfil');
+  //console.log(this.mostrar)
+  this.router.navigateByUrl('perfil/inicio');
 }
 login(user:any) {
   
   this.comm.datos(user).subscribe((data) => {
-    this.mostrar = data;
-    console.log(data);
+    this.mostrar = data[0].ID;
+    this.comm.guardarID(this.mostrar),
     this.comm.guardarDatos(data);
   });
+  //this.comm.guardarID(this.mostrar);
   }
 }
