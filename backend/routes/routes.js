@@ -230,36 +230,62 @@ let data=[
     "edad": 31,
     "ubicacion": "El Paraíso, El Paraíso"
 }
-  ]
+]
+let contratos=[] 
 
 router.post('/buscar', (req, res) => {
-  const dato = req.body.dato;
-  const resultados = data.filter((element) =>(element.correo==dato)||(element.nombre == dato) ||(element.oficio1 == dato)||(element.oficio2 == dato) );
-  console.log(resultados);
-  res.status(200).send(resultados);
+    const dato = req.body.dato;
+    const resultados = data.filter((element) =>(element.correo==dato)||(element.nombre == dato) ||(element.oficio1 == dato)||(element.oficio2 == dato) );
+    console.log(resultados);
+    res.status(200).send(resultados);
 });
 
 router.post('/mod',json(),(req, res)=> {
-  let ID ='0123456789';
+    let ID ='0123456789';
 
-  let nombre=req.body.nuevosDatos.nombre;
-  let apellido=req.body.nuevosDatos.apellido;
-  let oficio1=req.body.nuevosDatos.oficio1;
-  let oficio2=req.body.nuevosDatos.oficio2;
-  
-  update(ID,nombre,apellido,oficio1,oficio2)
+    let nombre=req.body.nuevosDatos.nombre;
+    let apellido=req.body.nuevosDatos.apellido;
+    let oficio1=req.body.nuevosDatos.oficio1;
+    let oficio2=req.body.nuevosDatos.oficio2;
+    update(ID,nombre,apellido,oficio1,oficio2)
 });
 
 function update(id,nombre,apellido,oficio1,oficio2,){
-  data.map(x=>{
+    data.map(x=>{
     if (x.ID==id) {
-      x.nombre=nombre;
-      x.apellido=apellido;
-      x.oficio1=oficio1;
-      x.oficio2=oficio2;
-    }  
-  })
-  console.log(data)
+    x.nombre=nombre;
+    x.apellido=apellido;
+    x.oficio1=oficio1;
+    x.oficio2=oficio2;
+}  
+})
+console.log(data)
 }
+router.post('/contrato',json(),(req, res)=> {
+    let titulo=req.body.nuevosDatos.titulo;
+    let salario=req.body.nuevosDatos.salario;
+    let lugar=req.body.nuevosDatos.lugar;
+    let tiempo=req.body.nuevosDatos.tiempo;
+    let oficio=req.body.nuevosDatos.oficio
+    append(titulo,salario,lugar,tiempo,oficio)
+    console.log (contratos)
+});
+router.post('/buscar/contratos', (req, res) => {
+    const dato = req.body.dato;
+    const resultados = contratos.filter((element) =>(element.oficio==dato));
+    console.log(resultados);
+    res.status(200).send(resultados);
+});
 
+function append(titulo, salario,lugar,tiempo,oficio){
+    var hoja = {
+        titulo: titulo,
+        salario: salario,
+        lugar: lugar,
+        tiempo: tiempo,
+        oficio:oficio
+    };
+    contratos.push(hoja);
+
+}
 module.exports = router;
