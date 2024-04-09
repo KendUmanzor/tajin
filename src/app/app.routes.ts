@@ -11,6 +11,7 @@ import { autenticacionGuard } from './guard/autenticacion.guard';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import   {PerfilEmpresaComponent} from './perif-empresa/perfil-empresa.component';
 import { MenuComponent } from './menu/menu.component';
+import { CalificacionComponent } from './calificacion/calificacion.component';
 
 export const routes: Routes = [
     {path:'menu',component:MenuComponent},
@@ -26,6 +27,7 @@ export const routes: Routes = [
     {path:'login',component:sidebarComponent},
     {path: '', redirectTo: '/landing', pathMatch:'full'},
   //{path:'**',component:PageNotFoundComponent},
-    {path:'empresa',component:PerfilEmpresaComponent}
+    {path:'empresa',component:PerfilEmpresaComponent},
+    {path:'rating',component:CalificacionComponent}
     
 ];
