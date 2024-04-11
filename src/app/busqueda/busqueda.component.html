@@ -26,14 +26,7 @@
           <span><a href="/landing" class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white" aria-current="page">Ir al inicio</a>
           </span>
         -->
-        <div *ngFor="let persona of mostrar0" class="p-4 m-2 border rounded">
-          <div><strong>Nombre:</strong> {{ persona.nombre }}</div>
-          <div><strong>Apellido:</strong> {{ persona.apellido }}</div>
-          <div><strong>Correo:</strong> {{ persona.correo }}</div>
-          <div><strong>Oficio 1:</strong> {{ persona.oficio1 }}</div>
-          <div><strong>Oficio 2:</strong> {{ persona.oficio2 }}</div>
-          <div><strong>Edad:</strong> {{ persona.edad }}</div>
-          <div><strong>Género:</strong> {{ persona.genero }}</div>
+        <div >
         </div>
         
       </div>
@@ -53,8 +46,25 @@
 -->
 
 
-<div class="w-screen justify-center items-center px-8 py-10 bg-white rounded-lg shadow-md dark:bg-gray-950 dark:text-gray-200">
+<div class=" flex w-screen justify-center items-center px-8 py-10 bg-white rounded-lg shadow-md dark:bg-gray-950 dark:text-gray-200">
+  @for (persona of empleados; track $index) {
+      @if (true) {
+      <div class="shadow-md m-3 w-2/4 flex">
+        <img  class="w-24 h-24 m-4" src="../../assets/user.png" alt="">
+      <div>
+        <div><strong>Nombre:</strong> {{ persona.nombre }}</div>
+        <div><strong>Apellido:</strong> {{ persona.apellido }}</div>
+        <div><strong>Correo:</strong> {{ persona.correo }}</div>
+        <div><strong>Oficio 1:</strong> {{ persona.oficio1 }}</div>
+        <div><strong>Oficio 2:</strong> {{ persona.oficio2 }}</div>
+        <div><strong>Edad:</strong> {{ persona.edad }}</div>
+        <div><strong>Género:</strong> {{ persona.genero }}</div>
+      </div>
+        
+      </div>
+    }
 
+  }
   <p>Resultados</p> 
   <p class="text-gray-600 text-center mb-4">{{mostrar}}</p>
 </div>

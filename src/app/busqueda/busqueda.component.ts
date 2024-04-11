@@ -1,4 +1,4 @@
-import { Component, signal} from '@angular/core';
+import { Component, inject, signal} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { NavSimpleComponent  } from "../nav-simple/nav-simple.component";
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { Empleados } from '../../interfaces/empleados';
 @Component({
     selector: 'app-busqueda',
     standalone: true,
@@ -21,13 +21,27 @@ export class BusquedaComponent {
   busqueda= {target:''};
   mostrar:any
   mostrar0:any
+  empleados:Empleados[]=[];
+  http=inject(HttpClient);
+
   constructor( private router:Router,private comm:CommService, private httpclient:HttpClient){
+   
   }
 
 
-  getapi():Observable<any>{
-    return this.httpclient.get(this.URLAPI).pipe(res => res)
+  ngOnInit(){
+    this.http.get<Empleados []>('http://127.0.0.1:8000/api/empleado/').subscribe((data )=> {
+   
+       this.empleados=data;
+      console.log(this.empleados);
+
+    });
+   
   }
+
+  //getapi():Observable<any>{
+    //return this.httpclient.get(this.URLAPI).pipe(res => res)
+  //}
   show() {
     this.comm.datos(this.busqueda.target).subscribe(x => this.mostrar=JSON.stringify(x,undefined));
     this.mostrar0=JSON.parse(this.mostrar[0]);

@@ -7,14 +7,14 @@ import { FormBuilder } from '@angular/forms';
 })
 export class DatosService {
 private compartirDatos!:any;
-public setCompartirDatos(data:any,keyword:string){
+public setCompartirDatos(data:any,keyword:string): void{
   localStorage.setItem(keyword,JSON.stringify(data));
   console.log('dato enviado:'+data);
 }
 public getCompartirDatos(): FormBuilder {
   const data=localStorage.getItem('DATOS');
   console.log('dato recibido:'+data);
-   return data ? JSON.parse(data):null ;
+  return data ? JSON.parse(data):null ;
 }
   constructor() { }
 }

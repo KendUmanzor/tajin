@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
     styleUrl: './app.component.scss',
     imports: [RouterOutlet, LandingComponent,HttpClientModule]
 })
+
+
 export class AppComponent {
   title = 'appweb';
 }
