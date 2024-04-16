@@ -5,11 +5,23 @@
       <h1 class="text-2xl font-semibold text-center mb-6">ingrese lo que desea buscar</h1>
       <div class="flex">
         
-        <input placeholder="e.g. Blog" [(ngModel)]="busqueda.target" class="w-full text-[15px] text-[black] -mr-2.5 p-[15px] rounded-tl-[0.5em] rounded-primary-700-[0.5em] rounded-br-lg border-primary-700" type="text" name="query" id="query"/>
-        <button  (click)="show()" class=" bg-primary-700 no-underline text-[17px] text-white cursor-pointer  p-[15px] rounded-tr-[0.5em] rounded-br-[0.5em] border-0">
+        <input placeholder="e.g. Blog" [(ngModel)]="busqueda.target" class="w-full text-[15px] text-[black] -mr-2.5 p-[15px] rounded-t-[0.5em] rounded-primary-700-[0.5em] rounded-b-lg border-primary-700" type="text" name="query" id="query"/>
+        <button  (click)="c()" class=" bg-primary-700 no-underline text-[17px] text-white cursor-pointer  p-[15px] rounded-tr-[0.5em] rounded-br-[0.5em] border-0">
           
           Busca
         </button>
+      </div>
+      <div class=" w-full m-3 flex justify-center">
+        @for (item of trabajosInformales; track $index) {
+        <button class="w-24 mx-3 rounded-lg aspect-video bg-primary-700 shadow-md shadow-primary-600 text-white" (click)="meca(item)">{{item}}</button>
+        <!-- <button class="w-24 mx-3 rounded-lg aspect-video bg-primary-700 shadow-md shadow-primary-600"></button>
+        <button class="w-24 mx-3 rounded-lg aspect-video bg-primary-700 shadow-md shadow-primary-600"></button>
+        <button class="w-24 mx-3 rounded-lg aspect-video bg-primary-700 shadow-md shadow-primary-600"></button>
+        <button class="w-24 mx-3 rounded-lg aspect-video bg-primary-700 shadow-md shadow-primary-600"></button>
+        <button class="w-24 mx-3 rounded-lg aspect-video bg-primary-700 shadow-md shadow-primary-600"></button>
+        <button class="w-24 mx-3 rounded-lg aspect-video bg-primary-700 shadow-md shadow-primary-600"></button>
+        <button class="w-24 mx-3 rounded-lg aspect-video bg-primary-700 shadow-md shadow-primary-600"></button> -->
+      }
       </div>
       
       
@@ -46,26 +58,43 @@
 -->
 
 
-<div class=" flex w-screen justify-center items-center px-8 py-10 bg-white rounded-lg shadow-md dark:bg-gray-950 dark:text-gray-200">
+<div class=" flex flex-wrap justify-around w-screen  items-center px-8 py-10 bg-white rounded-lg shadow-md dark:bg-gray-950 dark:text-gray-200">
   @for (persona of empleados; track $index) {
-      @if (true) {
-      <div class="shadow-md m-3 w-2/4 flex">
+    
+      @if ( flag==true ) {
+      <div class="shadow-lg m-3 h-56 w-1/3 flex rounded-3xl ">
         <img  class="w-24 h-24 m-4" src="../../assets/user.png" alt="">
       <div>
         <div><strong>Nombre:</strong> {{ persona.nombre }}</div>
         <div><strong>Apellido:</strong> {{ persona.apellido }}</div>
         <div><strong>Correo:</strong> {{ persona.correo }}</div>
         <div><strong>Oficio 1:</strong> {{ persona.oficio1 }}</div>
-        <div><strong>Oficio 2:</strong> {{ persona.oficio2 }}</div>
+        <div><strong>Oficio 2:</strong> {{ persona.oficio2.join()}}</div>
         <div><strong>Edad:</strong> {{ persona.edad }}</div>
         <div><strong>Género:</strong> {{ persona.genero }}</div>
       </div>
         
       </div>
     }
+    @else if(persona.oficio1==x) {
+      <div class="shadow-lg m-3 h-56 w-1/3 flex rounded-3xl ">
+        <img  class="w-24 h-24 m-4" src="../../assets/user.png" alt="">
+      <div>
+        <div><strong>Nombre:</strong> {{ persona.nombre }}</div>
+        <div><strong>Apellido:</strong> {{ persona.apellido }}</div>
+        <div><strong>Correo:</strong> {{ persona.correo }}</div>
+        <div><strong>Oficio 1:</strong> {{ persona.oficio1 }}</div>
+        <div><strong>Oficio 2:</strong> {{ persona.oficio2.join()}}</div>
+        <div><strong>Edad:</strong> {{ persona.edad }}</div>
+        <div><strong>Género:</strong> {{ persona.genero }}</div>
+      </div>
+        
+      </div>
+
+    }
 
   }
-  <p>Resultados</p> 
-  <p class="text-gray-600 text-center mb-4">{{mostrar}}</p>
+  <p class="w-full">Resultados</p> 
+
 </div>
 </body>

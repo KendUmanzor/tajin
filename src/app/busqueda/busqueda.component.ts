@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
 import { CommService } from '../service/comm.service';
 import { NavSimpleComponent  } from "../nav-simple/nav-simple.component";
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Empleados } from '../../interfaces/empleados';
+import { Empleados, emepleaddoClase } from '../../interfaces/empleados';
 @Component({
     selector: 'app-busqueda',
     standalone: true,
@@ -23,22 +23,47 @@ export class BusquedaComponent {
   mostrar0:any
   empleados:Empleados[]=[];
   http=inject(HttpClient);
+  empleado=new emepleaddoClase("e","s",2,"electricista",["mecanico",'armario'],"es@user.com","yoquese");
+  x:string='';
+  flag:boolean=true;
+  head:HttpHeaders | undefined;
 
-  constructor( private router:Router,private comm:CommService, private httpclient:HttpClient){
-   
-  }
+  trabajosInformales: string[] = [
+    "Electricista",
+    "Albañil",
+    "Tablayesero o yesero",
+    "Ceramiquero",
+    "Pintor",
+    "Fontanero",
+    "Carpintero",
+    "Herrero",
+    "Soldador",
+    "Jardinero o jardinera",
+    'mecanico'
+];
 
-
+  constructor(   
+    private router:Router,private comm:CommService, private httpclient:HttpClient,){
+       this.head=new HttpHeaders({'content-type':'application-json'});
+    }
+  
+  
   ngOnInit(){
     this.http.get<Empleados []>('http://127.0.0.1:8000/api/empleado/').subscribe((data )=> {
-   
-       this.empleados=data;
-      console.log(this.empleados);
+      
+      this.empleados=data;
 
+      console.log(this.empleados,this.empleado);
+    
     });
-   
-  }
 
+  }
+  c(){
+    this.head=new HttpHeaders({'content-type':'application-json'});
+    console.log(this.empleado);
+    this.http.post('http://127.0.0.1:8000/api/empleado/',this.empleado).subscribe();
+    this.http.put<Empleados>('http://127.0.0.1:8000/api/empleado/',this.empleado,{headers:this.head});
+  }
   //getapi():Observable<any>{
     //return this.httpclient.get(this.URLAPI).pipe(res => res)
   //}
@@ -51,6 +76,10 @@ export class BusquedaComponent {
     //this.srv.currentUser1.subscribe(x=> console.log(x));
     //console.log(this.srv.currentUserSubject.getValue());
 
+  }
+  meca(texto:string){
+    this.flag=false;
+    this.x=texto;
   }
 
 

@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'takin',
     'rest_framework',
+    'coreapi',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,9 +57,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:4200',
-]
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:4200',
+
+# ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'backenddjango.urls'
 
@@ -132,3 +136,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+}
