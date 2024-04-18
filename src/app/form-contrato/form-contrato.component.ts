@@ -9,41 +9,32 @@ import { FormsModule } from '@angular/forms'; // Importa FormsModule aquí
 import { Router } from '@angular/router';
 import { PerfilComponent } from '../perfil/perfil.component';
 @Component({
-  selector: 'app-config',
+  selector: 'app-form-contrato',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './config.component.html',
-  styleUrl: './config.component.scss'
+  templateUrl: './form-contrato.component.html',
+  styleUrl: './form-contrato.component.scss'
 })
-export class ConfigComponent implements OnInit {
-  
-
+export class FormContratoComponent {
   datos=
-    {
-      id:'',
-      nombre: '',
-      apellido: '',
-      oficio1: '',
-      oficio2: ''
-    }
-  ;
-  mostrar:any
-  constructor(private formBuilder: FormBuilder,private router:Router, private comm: CommService){}
-  ngOnInit(): void {
-    
-  };
-  
-  onSubmit() {
-    this.comm.datos$.subscribe((datos: any[]) => {
-      if (datos && datos.length > 0) {
-        const primerObjeto = datos[0];
-        this.datos.id=primerObjeto.ID}});
-    console.log(this.datos.id)
-    this.comm.actualizarDatos(this.datos).subscribe(x=>{
-      console.log(x)
-    })
-
-    this.router.navigateByUrl('/register');
+  {
+    Titulo:'',
+    Ubicacion: '',
+    Oficio: '',
+    Hora: '',
+    Descripcion: ''
   }
-}
+;
+  constructor(private formBuilder: FormBuilder,private router:Router, private comm: CommService){}
+  onSubmit() {
+
+    this.comm.metercontrato(this.datos);
+    console.log(this.datos);
+    this.comm.vercontratos(this.datos.Oficio).subscribe(dato=>{
+      console.log(dato);
+    })
+    }
+
+    
   
+  }

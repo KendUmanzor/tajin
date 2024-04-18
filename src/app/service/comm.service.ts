@@ -14,17 +14,20 @@ export class CommService {
   datos(correo:string): Observable<any> {
   
     return this.http.post('http://localhost:3200/buscar',{dato: correo })
-  }
+  };
   actualizarDatos(nuevosDatos:any) {
     return this.http.post('http://localhost:3200/mod',{nuevosDatos})
-  }
-  metercontrato(nuevosDatos:any) {
-    return this.http.post('http://localhost:3200/contrato',{nuevosDatos})
-  }
-  vercontratos(correo:string): Observable<any> {
+  };
+  metercontrato(meter:any) {
+    return this.http.post('http://localhost:3200/ceter',{meter})
+  };
+  vercontratos(oficio:any): Observable<any> {
   
-    return this.http.post('http://localhost:3200/buscar/contratos',{dato: correo })
-  }
+    return this.http.post('http://localhost:3200/buscar/contratos',{oficio})
+  };
+  registrarte(nuevosDatos:any){
+    return this.http.post('http://localhost:3200/registrarte',{nuevosDatos})
+  };
   guardarDatos(datos: any[]) {
 
     this.datosSubject.next(datos);

@@ -10,6 +10,8 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 import { ConfigComponent } from './config/config.component';
 import { PerfilInicioComponent } from './perfilinicio/perfilinicio.component';
 import { MenuComponent } from './menu/menu.component';
+import { FormContratoComponent } from './form-contrato/form-contrato.component';
+import { ContratosComponent } from './contratos/contratos.component';
 
 export const routes: Routes = [
     {path: 'register', component:RegisterComponent},
@@ -22,6 +24,8 @@ export const routes: Routes = [
     {path:'perfil/info/config',component:ConfigComponent},
     {path:'perfil/inicio',component:PerfilInicioComponent},
     {path:'perfil/menu',component:MenuComponent},
+    {path:'perfil/contratos/crear',component:FormContratoComponent },
+    {path:'perfil/buscar/contratos',component:ContratosComponent},
     {path: '', redirectTo: '/landing', pathMatch:'full'},
     {path:'**',component:PageNotFoundComponent}
 ];

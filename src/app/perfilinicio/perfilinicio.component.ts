@@ -6,13 +6,14 @@ import { RegisterComponent } from '../register/register.component';
 import { CommService } from '../service/comm.service';
 import { NavperfilComponent } from "../navperfil/navperfil.component";
 import { sidebarComponent } from "../sidebar/sidebar.component";
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-perfilinicio',
     standalone: true,
     templateUrl: './perfilinicio.component.html',
     styleUrl: './perfilinicio.component.scss',
-    imports: [NavSimpleComponent, sidebarComponent]
+    imports: [NavSimpleComponent, sidebarComponent,RouterModule]
 })
 
 export class PerfilInicioComponent implements OnInit{

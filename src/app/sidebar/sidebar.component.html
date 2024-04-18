@@ -16,7 +16,7 @@
         <li class="py-2 px-4 hover:bg-gray-700">Opción 2</li>
         <li class="py-2 px-4 hover:bg-gray-700">Opción 3</li>-->
         <li (click)="logout()" class="py-2 px-4 hover:bg-primary-500" *ngIf="isExpanded"><a href="/register">Logout</a></li>
-        <li class="py-2 px-4 hover:bg-primary-500" *ngIf="isExpanded"><a href="/perfil/menu">configuracion</a></li>
+        <li class="py-2 px-4 hover:bg-primary-500" *ngIf="isExpanded"><a [routerLink]="['/perfil/menu']" routerLinkActive="router-link-active" >configuracion</a></li>
         <li class="py-2 px-4 hover:bg-primary-500" *ngIf="isExpanded"><a href="/landing">Inicio</a></li>
       </ul>
     </div>
