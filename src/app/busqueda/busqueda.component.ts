@@ -82,5 +82,8 @@ export class BusquedaComponent {
     this.x=texto;
   }
 
+  buscarNombre(n:string){
+    this.name=n;
 
+  }
 }

@@ -40,11 +40,12 @@ onSubmit() {
     if (this.registerForm.invalid) {
         return;
     }
-    this.router.navigateByUrl('/perfil');
+    
     console.log(this.registerForm.value);
-    alert('Datos capturados\n\n' + JSON.stringify(this.registerForm.value))
-    this.enviarDatos();
-    }
+    this.comm.registrarte(this.registerForm)
+    
+    this.router.navigateByUrl('/perfil');
+};
 
     enviarDatos(){
         const datos:FormBuilder=this.registerForm.value;

@@ -5,6 +5,7 @@ import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
 import { DatosService } from '../../services/datos.service';
 //import { ServicesService } from '../service/services.service';
 import { Router } from '@angular/router';
+import { CommService } from '../service/comm.service';
 
 
 @Component({
@@ -15,9 +16,9 @@ import { Router } from '@angular/router';
     imports: [ReactiveFormsModule,FormsModule,CommonModule, NavSimpleComponent]
 })
 
-export class RegisterComponent implements OnInit {
-  //correo:any='';
-  //password:any='';
+export class RegisterComponent{
+  email:any;
+  password:any;
   submitted = false;
   registerForm!:FormGroup
   constructor(private formBuilder: FormBuilder,private servicedata:DatosService,private router:Router){}
