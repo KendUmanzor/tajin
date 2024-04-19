@@ -1,15 +1,13 @@
 from django.urls import path, include
-from rest_framework import routers,DefaultRouter
+from rest_framework import routers
 from .api import empleadoViewSet
 from .views import EmpleadorViewSet, OficioViewSet, EmpleadoViewSet, CalificacionViewSet, ContratoViewSet
 
 router =routers.DefaultRouter()
 
-router.register('api/empleado',empleadoViewSet,'empleado')
 
 
 
-router = DefaultRouter()
 router.register(r'api/oficios', OficioViewSet, basename='oficio')
 router.register(r'api/empleados', EmpleadoViewSet, basename='empleado')
 router.register(r'empleadores', EmpleadorViewSet, basename='empleador')

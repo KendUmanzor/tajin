@@ -24,10 +24,10 @@ class Contrato(models.Model):
 
 class Empleado(models.Model):
     id = models.AutoField(primary_key=True)
-    persona = models.OneToOneField(Persona, on_delete=models.CASCADE, primary_key=True)
+    persona = models.OneToOneField(Persona, on_delete=models.CASCADE,null=True)
     oficios = models.ManyToManyField(Oficio, related_name='empleados')
     correo = models.EmailField()
-    contraseña = models.CharField(max_length=100)
+    contraseña = models.CharField(max_length=100,default='')
     genero = models.CharField(max_length=10)
     contratos = models.ManyToManyField(Contrato, related_name='empleados')
     
@@ -35,10 +35,10 @@ class Empleado(models.Model):
 
 class Empleador(models.Model):
     id = models.AutoField(primary_key=True)
-    persona = models.OneToOneField(Persona, on_delete=models.CASCADE, primary_key=True)
+    persona = models.OneToOneField(Persona, on_delete=models.CASCADE,null=True)
     ubicacion = models.CharField(max_length=100)
     correo = models.EmailField()
-    contraseña = models.CharField(max_length=100)
+    contraseña = models.CharField(max_length=100,default='s')
     contratos = models.ManyToManyField(Contrato, related_name='empleadores')
 
 

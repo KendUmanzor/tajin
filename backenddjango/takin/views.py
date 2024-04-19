@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics,Response,viewsets, status
+from rest_framework import generics,viewsets, status
 from takin.models import Empleado,Contrato,Empleador, Postulacion,Oficio,Calificacion
 #from takin.serializador import empleadoSerializer
 from takin.serializador import EmpleadoSerializer, ContratoSerializer, EmpleadorSerializer, PostulacionSerializer,OficioSerializer, CalificacionSerializer
