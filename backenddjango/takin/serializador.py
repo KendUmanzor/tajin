@@ -23,19 +23,19 @@ class ContratoSerializer(serializers.ModelSerializer):
 
 class EmpleadoSerializer(serializers.ModelSerializer):
     persona = PersonaSerializer()
-    contratos = ContratoSerializer()
+ 
 
     class Meta:
         model = Empleado
-        fields = ['id', 'persona', 'oficios', 'correo', 'contraseña', 'genero', 'contrato']
+        fields = ['id', 'persona', 'correo', 'contraseña', 'genero',]
 
 class EmpleadorSerializer(serializers.ModelSerializer):
     persona = PersonaSerializer()
-    contratos = ContratoSerializer(many=True)
+    # contratos = ContratoSerializer(many=True)
 
     class Meta:
         model = Empleador
-        fields = ['id', 'persona', 'ubicacion', 'correo', 'contraseña', 'contratos' ]
+        fields = ['id', 'persona', 'ubicacion', 'correo', 'contraseña' ]
 
 class PostulacionSerializer(serializers.ModelSerializer):
     empleado = EmpleadoSerializer()

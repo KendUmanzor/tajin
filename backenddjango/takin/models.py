@@ -11,36 +11,36 @@ class Persona(models.Model):
     apellido = models.CharField(max_length=100)
     edad = models.IntegerField()
     
-class Oficio(models.Model):
-    nombre = models.CharField(max_length=100)
     
+
+class Empleado(Persona):
+    # id = models.AutoField(primary_key=True)
+    # persona = models.OneToOneField(Persona, on_delete=models.CASCADE,null=True)
+    # oficios = models.ManyToManyField(Oficio, related_name='empleados')
+    correo = models.EmailField()
+    contraseña = models.CharField(max_length=100,default='')
+    genero = models.CharField(max_length=10)
+    # contratos = models.ManyToManyField(Contrato, related_name='empleados')
+    
+
+
+class Empleador(Persona):
+    # id = models.AutoField(primary_key=True)
+    # persona = models.OneToOneField(Persona, on_delete=models.CASCADE,null=True)
+    ubicacion = models.CharField(max_length=100)
+    correo = models.EmailField()
+    contraseña = models.CharField(max_length=100,default='')
+    # contratos = models.ManyToManyField(Contrato, related_name='empleadores',default=[])
+    class Meta:
+        verbose_name= 'Empleador'
+
 class Contrato(models.Model):
     id = models.AutoField(primary_key=True)
     ubicacion = models.CharField(max_length=100)
     pago = models.DecimalField(max_digits=10, decimal_places=2)
     titulo = models.CharField(max_length=100)
     rubro = models.CharField(max_length=100)
-    
-
-class Empleado(models.Model):
-    id = models.AutoField(primary_key=True)
-    persona = models.OneToOneField(Persona, on_delete=models.CASCADE,null=True)
-    oficios = models.ManyToManyField(Oficio, related_name='empleados')
-    correo = models.EmailField()
-    contraseña = models.CharField(max_length=100,default='')
-    genero = models.CharField(max_length=10)
-    contratos = models.ManyToManyField(Contrato, related_name='empleados')
-    
-
-
-class Empleador(models.Model):
-    id = models.AutoField(primary_key=True)
-    persona = models.OneToOneField(Persona, on_delete=models.CASCADE,null=True)
-    ubicacion = models.CharField(max_length=100)
-    correo = models.EmailField()
-    contraseña = models.CharField(max_length=100,default='s')
-    contratos = models.ManyToManyField(Contrato, related_name='empleadores')
-
+    empleador=models.ForeignKey(Empleador,on_delete=models.CASCADE,default=None)
 
 class Postulacion(models.Model):
     id = models.AutoField(primary_key=True)
@@ -56,3 +56,7 @@ class Calificacion(models.Model):
     puntuacion = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     comentario = models.TextField()
     fecha_calificacion = models.DateTimeField(auto_now_add=True)
+
+class Oficio(models.Model):
+    nombre = models.CharField(max_length=100)
+    Empleado=models.ManyToManyField(Empleado,related_name='oficios')
