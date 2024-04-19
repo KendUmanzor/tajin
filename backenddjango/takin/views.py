@@ -1,14 +1,29 @@
 from django.shortcuts import render
 from rest_framework import generics,Response,viewsets, status
-from takin.models import Empleado,Contrato,Empleador, Postulacion
-from backenddjango.takin.serializador import empleadoSerializer
-from takin.serializador import EmpleadoSerializer, ContratoSerializer, PostulacionSerializer
+from takin.models import Empleado,Contrato,Empleador, Postulacion,Oficio,Calificacion
+#from takin.serializador import empleadoSerializer
+from takin.serializador import EmpleadoSerializer, ContratoSerializer, EmpleadorSerializer, PostulacionSerializer,OficioSerializer, CalificacionSerializer
 
-# Create your views here.
 
-#class empleadoList(generics.ListCreateAPIView):
-    # queryset=empleado.objects.all()
-    #serializer_class =empleadoSerializer()
+class EmpleadorViewSet(viewsets.ModelViewSet):
+    queryset = Empleador.objects.all()
+    serializer_class = EmpleadorSerializer
+class OficioViewSet(viewsets.ModelViewSet):
+    queryset = Oficio.objects.all()
+    serializer_class = OficioSerializer
+
+class EmpleadoViewSet(viewsets.ModelViewSet):
+    queryset = Empleado.objects.all()
+    serializer_class = EmpleadoSerializer
+
+class CalificacionViewSet(viewsets.ModelViewSet):
+    queryset = Calificacion.objects.all()
+    serializer_class = CalificacionSerializer
+
+class ContratoViewSet(viewsets.ModelViewSet):
+    queryset = Contrato.objects.all()
+    serializer_class = ContratoSerializer
+    
 
 class ContratoEmpleadoViewSet(viewsets.ViewSet):
     def list(self, request):
