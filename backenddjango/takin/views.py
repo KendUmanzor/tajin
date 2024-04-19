@@ -6,7 +6,7 @@ from takin.models import Empleado,Contrato,Empleador, Postulacion,Oficio,Calific
 from takin.serializador import EmpleadoSerializer, ContratoSerializer, EmpleadorSerializer, PostulacionSerializer,OficioSerializer, CalificacionSerializer
 
 
-class EmpleadorViewSet(generics.views):
+class EmpleadorViewSet(viewsets.ModelViewSet):
     queryset = Empleador.objects.all()
     serializer_class = EmpleadorSerializer
     
