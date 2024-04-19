@@ -23,11 +23,11 @@ class ContratoSerializer(serializers.ModelSerializer):
 
 class EmpleadoSerializer(serializers.ModelSerializer):
     persona = PersonaSerializer()
-    contratos = ContratoSerializer(many=True)
+    contratos = ContratoSerializer()
 
     class Meta:
         model = Empleado
-        fields = ['id', 'persona', 'oficio1', 'oficio2', 'correo', 'contraseña', 'genero', 'contratos']
+        fields = ['id', 'persona', 'oficios', 'correo', 'contraseña', 'genero', 'contrato']
 
 class EmpleadorSerializer(serializers.ModelSerializer):
     persona = PersonaSerializer()
@@ -35,7 +35,7 @@ class EmpleadorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Empleador
-        fields = ['id', 'persona', 'ubicacion', 'correo', 'contraseña', 'contratos']
+        fields = ['id', 'persona', 'ubicacion', 'correo', 'contraseña', 'contratos' ]
 
 class PostulacionSerializer(serializers.ModelSerializer):
     empleado = EmpleadoSerializer()

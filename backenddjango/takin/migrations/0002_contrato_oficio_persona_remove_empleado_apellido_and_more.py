@@ -6,7 +6,8 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
+    
+    initial = True
     dependencies = [
         ('takin', '0001_initial'),
     ]
