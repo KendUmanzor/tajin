@@ -10,8 +10,8 @@ class Persona(models.Model):
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
     # edad = models.IntegerField()
-    
-    
+
+
 
 class Empleado(Persona):
     # id = models.AutoField(primary_key=True)
@@ -21,7 +21,7 @@ class Empleado(Persona):
     password = models.CharField(max_length=100)
     # genero = models.CharField(max_length=10)
     # contratos = models.ManyToManyField(Contrato, related_name='empleados')
-    
+
 
 
 class Empleador(Persona):
@@ -47,7 +47,7 @@ class Postulacion(models.Model):
     empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE, related_name='postulaciones')
     contrato = models.ForeignKey(Contrato, on_delete=models.CASCADE, related_name='postulantes')
     fecha_postulacion = models.DateTimeField(auto_now_add=True)
-    
+
 class Calificacion(models.Model):
     id = models.AutoField(primary_key=True)
     empleador = models.ForeignKey(Empleador, on_delete=models.CASCADE, related_name='calificaciones')

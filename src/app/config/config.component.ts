@@ -1,4 +1,4 @@
-import { Component , OnInit} from '@angular/core';
+import { Component , OnInit, inject} from '@angular/core';
 import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
 import { DatosService } from '../../services/datos.service';
 import { FormBuilder } from '@angular/forms';
@@ -8,6 +8,8 @@ import { NavperfilComponent } from "../navperfil/navperfil.component";
 import { FormsModule } from '@angular/forms'; // Importa FormsModule aquí
 import { Router } from '@angular/router';
 import { PerfilComponent } from '../perfil/perfil.component';
+import { EmpleadosRegistro } from '../../interfaces/empleados';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-config',
   standalone: true,
@@ -16,34 +18,35 @@ import { PerfilComponent } from '../perfil/perfil.component';
   styleUrl: './config.component.scss'
 })
 export class ConfigComponent implements OnInit {
-  
 
+  perfil!:EmpleadosRegistro;
   datos=
     {
-      id:'',
       nombre: '',
       apellido: '',
-      oficio1: '',
-      oficio2: ''
+      email: '',
+      password: ''
     }
   ;
+  http=inject(HttpClient)
   mostrar:any
-  constructor(private formBuilder: FormBuilder,private router:Router, private comm: CommService){}
+  constructor(private formBuilder: FormBuilder,private router:Router, private servicioDatos:DatosService,private contratoService: CommService){}
   ngOnInit(): void {
-    
+      this.http.post("http://127.0.0.1:8000/perfil",JSON.stringify(this.servicioDatos.getCompartirDatos('credenciales'))).subscribe((data:any)=>{
+        this.perfil=data.data;
+        console.log(this.perfil.id)
+    });
   };
-  
   onSubmit() {
-    this.comm.datos$.subscribe((datos: any[]) => {
-      if (datos && datos.length > 0) {
-        const primerObjeto = datos[0];
-        this.datos.id=primerObjeto.ID}});
-    console.log(this.datos.id)
-    this.comm.actualizarDatos(this.datos).subscribe(x=>{
-      console.log(x)
-    })
 
-    this.router.navigateByUrl('/register');
+
+
+    this.actualizar(this.perfil.id,this.datos)
+    this.router.navigateByUrl('/register')
   }
+
+    actualizar(empleadoId: number, contratoData: any) {
+      this.contratoService.actualizarempleador(empleadoId, contratoData).subscribe(
+      );
+    }
 }
-  

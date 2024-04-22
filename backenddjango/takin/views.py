@@ -1,3 +1,4 @@
+from argparse import Action
 import json
 from urllib import response
 from django.forms import model_to_dict
@@ -6,7 +7,7 @@ from rest_framework import generics,viewsets, status
 from takin.models import Empleado,Contrato,Empleador, Postulacion,Oficio,Calificacion
 #from takin.serializador import empleadoSerializer
 from takin.serializador import EmpleadoSerializer, ContratoSerializer, EmpleadorSerializer, PostulacionSerializer,OficioSerializer, CalificacionSerializer
-
+from rest_framework.decorators import action
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from.models import Empleado, Empleador
@@ -15,16 +16,16 @@ def login(request, *args, **kwargs):
     if request.method == 'POST':
         e=json.loads(request.body.decode('utf-8'))
         try:
-            empleado = Empleado.objects.get(email=e['email'])
+            empleado = Empleador.objects.get(email=e['email'])
             if empleado.password == e['password']:
                 return JsonResponse({'success': True,'data':{'email':empleado.email,'password':empleado.password}})
             else:
                 return JsonResponse({'Error': 'La contraseña es incorrecta'})
         except Empleado.DoesNotExist:
             try:
-                empleador = Empleador.objects.get(email=e['email'])
+                empleador = Empleado.objects.get(email=e['email'])
                 if empleador.password == e['password']:
-                    return JsonResponse({'success': 'El usuario y contraseña son correctos'})
+                    return JsonResponse({'success': True,'data':{'email':empleado.email,'password':empleado.password}})
                 else:
                     return JsonResponse({'Error': 'La contraseña es incorrecta'})
             except Empleador.DoesNotExist:
@@ -33,16 +34,15 @@ def login(request, *args, **kwargs):
 def perfil(request,*args, **kwargs):
     e=json.loads(request.body.decode('utf-8'))
     try:
-        empleado = Empleado.objects.get(email=e['email'])
+        empleado = Empleador.objects.get(email=e['email'])
         return JsonResponse({'data':model_to_dict(empleado)})
-    except Empleado.DoesNotExist:
+    except Empleador.DoesNotExist:
         return JsonResponse({'Error': 'El email no existe en la base de datos'})
 
 class EmpleadorViewSet(viewsets.ModelViewSet):
     queryset = Empleador.objects.all()
     serializer_class = EmpleadorSerializer
-    
-    
+
 class OficioViewSet(viewsets.ModelViewSet):
     queryset = Oficio.objects.all()
     serializer_class = OficioSerializer
@@ -58,7 +58,6 @@ class CalificacionViewSet(viewsets.ModelViewSet):
 class ContratoViewSet(viewsets.ModelViewSet):
     queryset = Contrato.objects.all()
     serializer_class = ContratoSerializer
-    
 
 class ContratoEmpleadoViewSet(viewsets.ViewSet):
     def list(self, request):
@@ -66,24 +65,7 @@ class ContratoEmpleadoViewSet(viewsets.ViewSet):
         serializer = ContratoSerializer(contratos_disponibles, many=True)
         return response(serializer.data)
 
-    def create(self, request):
-        data = request.data
-        empleado_id = data.get('empleado_id')
-        contrato_id = data.get('contrato_id')
-
-        if not empleado_id or not contrato_id:
-            return response({'mensaje': 'meta un ID de empleado y un ID de contrato'}, status=status.HTTP_400_BAD_REQUEST)
-
-        try:
-            empleado = Empleado.objects.get(pk=empleado_id)
-            contrato = Contrato.objects.get(pk=contrato_id)
-        except (Empleado.DoesNotExist, Contrato.DoesNotExist):
-            return response({'mensaje': 'Empleado o contrato no encontrado'}, status=status.HTTP_404_NOT_FOUND)
-
-        empleado.contratos.add(contrato)
-        return response({'mensaje': 'Contrato añadido'}, status=status.HTTP_201_CREATED)
-
 class PostulacionViewSet(viewsets.ModelViewSet):
     queryset = Postulacion.objects.all()
     serializer_class = PostulacionSerializer
-    
+

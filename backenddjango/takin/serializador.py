@@ -19,7 +19,7 @@ class PersonaSerializer(serializers.ModelSerializer):
 class ContratoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contrato
-        fields = ['id', 'ubicacion', 'pago', 'titulo', 'rubro']
+        fields = '__all__'
 
 class EmpleadoSerializer(serializers.ModelSerializer):
 
@@ -29,7 +29,7 @@ class EmpleadoSerializer(serializers.ModelSerializer):
 
 class EmpleadorSerializer(serializers.ModelSerializer):
 
-    
+
 
     class Meta:
         model = Empleador

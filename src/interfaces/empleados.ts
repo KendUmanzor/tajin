@@ -1,6 +1,6 @@
 export interface Empleadosbusquedad {
-    
-    
+
+
     nombre:   string;
     apellido: string;
     edad:     number;
@@ -8,24 +8,24 @@ export interface Empleadosbusquedad {
     oficio2:  string;
     email:   string;
     genero:   string;
-    
-    
-    
+
+
+
 }
 
 export interface EmpleadosRegistro {
-
+    id:   number;
     nombre:   string;
     apellido: string;
     email:   string;
     password: string;
-    
-    
+
+
 }
 
 export class empleadoClase {
 
-    
+
         nombre!:   string;
         apellido!: string;
         edad!:     number;
@@ -39,6 +39,6 @@ export class empleadoClase {
         this.email = cor;
         this.password=contar
         this.genero=ge;
-        
+
     }
 }
