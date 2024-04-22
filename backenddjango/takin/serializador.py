@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from takin.models import Empleado,Empleador,Persona,Contrato, Postulacion,Calificacion,Oficio
+from takin.models import Empleado,Empleador,Usuario,Contrato, Postulacion,Calificacion,Oficio
 
 class OficioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,7 +13,7 @@ class CalificacionSerializer(serializers.ModelSerializer):
 
 class PersonaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Persona
+        model = Usuario
         fields = ['id', 'nombre', 'apellido', 'edad']
 
 class ContratoSerializer(serializers.ModelSerializer):
