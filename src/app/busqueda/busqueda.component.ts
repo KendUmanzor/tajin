@@ -7,7 +7,7 @@ import { NavSimpleComponent  } from "../nav-simple/nav-simple.component";
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Empleados, emepleaddoClase } from '../../interfaces/empleados';
+import { Empleadosbusquedad,empleadoClase } from '../../interfaces/empleados';
 @Component({
     selector: 'app-busqueda',
     standalone: true,
@@ -21,12 +21,13 @@ export class BusquedaComponent {
   busqueda= {target:''};
   mostrar:any
   mostrar0:any
-  empleados:Empleados[]=[];
+  empleados:Empleadosbusquedad[]=[];
   http=inject(HttpClient);
-  empleado=new emepleaddoClase("e","s",2,"electricista",["mecanico",'armario'],"es@user.com","yoquese");
+  empleado=new empleadoClase("e","s",2,"electricista",'armario',"es@user.com");
   x:string='';
   flag:boolean=true;
   head:HttpHeaders | undefined;
+  name:string=''
 
   trabajosInformales: string[] = [
     "Electricista",
@@ -49,7 +50,7 @@ export class BusquedaComponent {
   
   
   ngOnInit(){
-    this.http.get<Empleados []>('http://127.0.0.1:8000/api/empleado/').subscribe((data )=> {
+    this.http.get<Empleadosbusquedad []>('http://127.0.0.1:8000/api/empleados/').subscribe((data )=> {
       
       this.empleados=data;
 
@@ -61,8 +62,8 @@ export class BusquedaComponent {
   c(){
     this.head=new HttpHeaders({'content-type':'application-json'});
     console.log(this.empleado);
-    this.http.post('http://127.0.0.1:8000/api/empleado/',this.empleado).subscribe();
-    this.http.put<Empleados>('http://127.0.0.1:8000/api/empleado/',this.empleado,{headers:this.head});
+    this.http.post('http://127.0.0.1:8000/api/empleados/',this.empleado).subscribe();
+    this.http.put<Empleadosbusquedad>('http://127.0.0.1:8000/api/empleados/',this.empleado,{headers:this.head});
   }
   //getapi():Observable<any>{
     //return this.httpclient.get(this.URLAPI).pipe(res => res)
@@ -85,5 +86,4 @@ export class BusquedaComponent {
   buscarNombre(n:string){
     this.name=n;
 
-  }
-}
+}}

@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Type, inject } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, Validators , ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
 import { DatosService } from '../../services/datos.service';
 //import { ServicesService } from '../service/services.service';
 import { Router } from '@angular/router';
 import { CommService } from '../service/comm.service';
+import { HttpClient } from '@angular/common/http';
+import { loginInterface } from '../../interfaces/logininterface';
 
 
 @Component({
@@ -17,9 +19,11 @@ import { CommService } from '../service/comm.service';
 })
 
 export class RegisterComponent{
+  l?:loginInterface;
   email:any;
   password:any;
   submitted = false;
+  http=inject(HttpClient);
   registerForm!:FormGroup
   constructor(private formBuilder: FormBuilder,private servicedata:DatosService,private router:Router){}
   ngOnInit(): void {
@@ -36,32 +40,38 @@ get f() { return this.registerForm.controls; }
 
 onSubmit() {
   this.submitted = true;
-  if (this.f['password'].errors) {
-    console.log(this.f['password'].errors);
-  }
   // stop here if form is invalid
   if (this.registerForm.invalid) {
       return;
   }
   //location.href="perfil";
   this.enviarDatos();
-const e=this.registerForm.get('email')?.value;
-  if (e=='user@usuario.com'){
+// const e=this.registerForm.get('email')?.value;
+//   if (e=='user@usuario.com'){
 
-    this.router.navigateByUrl('/perfil');
-  }
-  if (e=='user@company.com'){
+//     this.router.navigateByUrl('/perfil');
+//   }
+//   if (e=='user@company.com'){
 
-    this.router.navigateByUrl('/empresa');
-  }
-  console.log(this.registerForm.value);
-  alert('Datos capturados\n\n' + JSON.stringify(this.registerForm.value))
-  
+//     this.router.navigateByUrl('/empresa');
+//   }
+//   console.log(this.registerForm.value);
+
 }
 enviarDatos(){
   const datos:FormBuilder=this.registerForm.value;
-  this.servicedata.setCompartirDatos(datos,'keys');
-
+  // this.servicedata.setCompartirDatos(datos,'keys');
+  this.http.post('http://localhost:8000/login',this.registerForm.value).subscribe((data:any)=>{
+    let success:Boolean=data.success;
+    if (success){
+      
+      this.router.navigateByUrl('/perfil');
+    }
+    else  {
+      alert(data.Error);
+      
+    } 
+  });
 
 }
 

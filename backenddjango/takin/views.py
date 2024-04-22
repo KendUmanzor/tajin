@@ -1,11 +1,40 @@
+import json
 from urllib import response
+from django.forms import model_to_dict
 from django.shortcuts import render
 from rest_framework import generics,viewsets, status
 from takin.models import Empleado,Contrato,Empleador, Postulacion,Oficio,Calificacion
 #from takin.serializador import empleadoSerializer
 from takin.serializador import EmpleadoSerializer, ContratoSerializer, EmpleadorSerializer, PostulacionSerializer,OficioSerializer, CalificacionSerializer
 
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponse, JsonResponse
+from.models import Empleado, Empleador
 
+def login(request, *args, **kwargs):
+    if request.method == 'GET':
+        return HttpResponse('hola')
+    if request.method == 'POST':
+        e=json.loads(request.body.decode('utf-8'))
+    
+        
+        try:
+            empleado = Empleado.objects.get(email=e['email'])
+            if empleado.password == e['password']:
+                return JsonResponse({'success': True,'data':model_to_dict(empleado)})
+            else:
+                return JsonResponse({'Error': 'La contraseña es incorrecta'})
+        except Empleado.DoesNotExist:
+            try:
+                empleador = Empleador.objects.get(email=e['email'])
+                if empleador.password == e['password']:
+                    return JsonResponse({'success': 'El usuario y contraseña son correctos'})
+                else:
+                    return JsonResponse({'Error': 'La contraseña es incorrecta'})
+            except Empleador.DoesNotExist:
+                return JsonResponse({'Error': 'El email no existe en la base de datos'})
+
+    return JsonResponse({'error': 'Sólo se permite el método POST'})
 class EmpleadorViewSet(viewsets.ModelViewSet):
     queryset = Empleador.objects.all()
     serializer_class = EmpleadorSerializer

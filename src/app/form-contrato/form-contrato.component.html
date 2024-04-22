@@ -1,21 +1,21 @@
-<div class="mx-14 mt-10 border-2 border-blue-400 rounded-lg">
+<div class="mx-14 mt-10 border-2 border-primary-400 rounded-lg">
     <div class="mt-10 text-center font-bold">Crear Contrato</div>
     <div class="mt-3 text-center text-4xl font-bold">Rellena lo que se pide</div>
     <form class="space-y-4 md:space-y-6" action="#"(ngSubmit)="onSubmit()">
     <div class="p-8">
       <div class="flex gap-4">
-        <input type="Name" name="name" class="mt-1 block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm" placeholder="Titulo del trabajo" />
-        <input type="email" name="email" class="mt-1 block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm" placeholder="Ubicacion" />
+        <input type="Name" name="name" class="mt-1 block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm" placeholder="Titulo del trabajo" />
+        <input type="email" name="email" class="mt-1 block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 placeholder-slate-400 shadow-sm placeholder:font-semibold placeholder:text-gray-500 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm" placeholder="Ubicacion" />
       </div>
       <div class="my-6 flex gap-4">
-        <select  name="Oficio" [(ngModel)]="datos.Oficio" id="select" class="block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 font-semibold text-gray-500 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm">
+        <select  name="Oficio" [(ngModel)]="datos.Oficio" id="select" class="block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 font-semibold text-gray-500 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm">
           <option  class="font-semibold text-slate-300">Selecciona un oficio</option>
           <option value="Albañil">asd1</option>
           <option value="Plomero">asd2</option>
           <option value="Electricista">asd3</option>
           <option value="Carpintero">asd4</option>
         </select>
-        <select  name="Hora" [(ngModel)]="datos.Hora"id="select" class="block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 font-semibold text-gray-300 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 sm:text-sm">
+        <select  name="Hora" [(ngModel)]="datos.Hora"id="select" class="block w-1/2 rounded-md border border-slate-300 bg-white px-3 py-4 font-semibold text-gray-300 shadow-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 sm:text-sm">
           <option  class="font-semibold text-slate-300">4:00 Available</option>
           <option value="1">1:00 Available</option>
     <option value="2:00 PM">2:00 Available</option>
@@ -30,7 +30,7 @@
       <div class="">
         <textarea name="Descripcion" [(ngModel)]="datos.Descripcion" id="text" cols="30" rows="10" class="mb-10 h-40 w-full resize-none rounded-md border border-slate-300 p-5 font-semibold text-gray-300">Descripcion del trabajo</textarea>
       </div>
-      <div class="w-full rounded-lg bg-blue-500 mt-4 text-white text-lg font-semibold">
+      <div class="w-full rounded-lg bg-primary-500 mt-4 text-white text-lg font-semibold">
         <button type="submit" class="w-full p-4">Crear</button>
     </div>
     </div>

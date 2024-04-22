@@ -1,9 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, inject } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, Validators , ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
 import { Router } from '@angular/router';
 import { DatosService } from '../../services/datos.service';
+import { CommService } from '../service/comm.service';
+import { EmpleadosRegistro, Empleadosbusquedad, empleadoClase } from '../../interfaces/empleados';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
     selector: 'app-registro-empleado',
@@ -14,8 +18,10 @@ import { DatosService } from '../../services/datos.service';
 })
 export class RegistroEmpleadoComponent implements OnInit {
     submitted = false;
+    empleado!:EmpleadosRegistro;
     registerForm!:FormGroup
-    constructor(private formBuilder: FormBuilder, private router:Router, private  servicioDatos:DatosService){}
+    http=inject(HttpClient);
+    constructor(private formBuilder: FormBuilder, private router:Router, private  servicioDatos:DatosService,httpclient:HttpClient){}
     ngOnInit(): void {
         this.registerForm = this.formBuilder.group({
             nombre:[''],
@@ -32,6 +38,14 @@ ver(){
 get f() { return this.registerForm.controls; }
 
 onSubmit() {
+    this.empleado =this.registerForm.value;
+    //this.empleado.nombre="eu";
+    // this.empleado.apellido='eu';
+
+    // this.empleado.correo='eu@gmail.com';
+     //this.empleado.contraseña='password';
+
+    
     this.submitted = true;
     if (this.f['password'].errors) {
         console.log(this.f['password'].errors);
@@ -40,9 +54,9 @@ onSubmit() {
     if (this.registerForm.invalid) {
         return;
     }
+
     
-    console.log(this.registerForm.value);
-    this.comm.registrarte(this.registerForm)
+    this.http.post('http://127.0.0.1:8000/api/empleados/',this.empleado).subscribe();
     
     this.router.navigateByUrl('/perfil');
 };

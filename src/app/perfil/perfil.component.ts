@@ -5,13 +5,16 @@ import { FormBuilder } from '@angular/forms';
 import { RegisterComponent } from '../register/register.component';
 import { CommService } from '../service/comm.service';
 import { NavperfilComponent } from "../navperfil/navperfil.component";
+import { sidebarComponent } from "../sidebar/sidebar.component";
+import { ChatComponent } from "../chat/chat.component";
+import { CalificacionComponent } from "../calificacion/calificacion.component";
 
 @Component({
     selector: 'app-perfil',
     standalone: true,
     templateUrl: './perfil.component.html',
     styleUrl: './perfil.component.scss',
-    imports: [NavSimpleComponent, NavperfilComponent]
+    imports: [NavSimpleComponent, NavperfilComponent, sidebarComponent, ChatComponent, CalificacionComponent]
 })
 export class PerfilComponent implements OnInit{
     datos!:FormBuilder;

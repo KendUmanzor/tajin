@@ -9,7 +9,7 @@ import { RegistroEmpleadorComponent } from './registro-empleador/registro-emplea
 import{sidebarComponent} from './sidebar/sidebar.component';
 import { autenticacionGuard } from './guard/autenticacion.guard';
 import { BusquedaComponent } from './busqueda/busqueda.component';
-import   {PerfilEmpresaComponent} from './perif-empresa/perfil-empresa.component';
+import   {PerfilEmpresaComponent} from './perfil-empresa/perfil-empresa.component';
 import { MenuComponent } from './menu/menu.component';
 import { CalificacionComponent } from './calificacion/calificacion.component';
 import { ConfigComponent } from './config/config.component';

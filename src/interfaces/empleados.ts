@@ -1,34 +1,43 @@
-export interface Empleados {
-
+export interface Empleadosbusquedad {
+    
+    
     nombre:   string;
     apellido: string;
     edad:     number;
     oficio1:  string;
-    oficio2:  string[];
-    correo:   string;
+    oficio2:  string;
+    email:   string;
     genero:   string;
     
     
     
 }
 
-export class emepleaddoClase {
+export interface EmpleadosRegistro {
+
+    nombre:   string;
+    apellido: string;
+    email:   string;
+    password: string;
+    
+    
+}
+
+export class empleadoClase {
 
     
         nombre!:   string;
         apellido!: string;
         edad!:     number;
-        oficio1!:  string;
-        oficio2!:  string[];
-        correo!:   string;
+        email!:   string;
         genero!:   string;
-    constructor(nombre:string,apellido:string,edad:number,oficio1:string,of2:string[],cor:string,ge:string) {
+        password:string;
+    constructor(nombre:string,apellido:string,edad:number,cor:string,ge:string,contar:string) {
         this.apellido=apellido;
         this.nombre=nombre;
         this.edad=edad;
-        this.oficio1=oficio1;
-        this.oficio2=of2;
-        this.correo=cor;
+        this.email = cor;
+        this.password=contar
         this.genero=ge;
         
     }
