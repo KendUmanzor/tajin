@@ -3,7 +3,7 @@ import { Component, OnInit, Type, inject } from '@angular/core';
 import {FormControl, FormGroup, FormsModule, Validators , ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
 import { DatosService } from '../../services/datos.service';
-//import { ServicesService } from '../service/services.service';
+import { ServicesService } from '../service/services.service';
 import { Router } from '@angular/router';
 import { CommService } from '../service/comm.service';
 import { HttpClient } from '@angular/common/http';
@@ -60,10 +60,10 @@ onSubmit() {
 }
 enviarDatos(){
   const datos:FormBuilder=this.registerForm.value;
-  // this.servicedata.setCompartirDatos(datos,'keys');
   this.http.post('http://localhost:8000/login',this.registerForm.value).subscribe((data:any)=>{
-    let success:Boolean=data.success;
-    if (success){
+    
+    if (data.success){
+      this.servicedata.setCompartirDatos(data.data,'credenciales');
       
       this.router.navigateByUrl('/perfil');
     }

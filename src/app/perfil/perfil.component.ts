@@ -1,4 +1,4 @@
-import { Component , OnInit} from '@angular/core';
+import { Component , OnInit, inject} from '@angular/core';
 import { NavSimpleComponent } from "../nav-simple/nav-simple.component";
 import { DatosService } from '../../services/datos.service';
 import { FormBuilder } from '@angular/forms';
@@ -8,6 +8,8 @@ import { NavperfilComponent } from "../navperfil/navperfil.component";
 import { sidebarComponent } from "../sidebar/sidebar.component";
 import { ChatComponent } from "../chat/chat.component";
 import { CalificacionComponent } from "../calificacion/calificacion.component";
+import { HttpClient } from '@angular/common/http';
+import { EmpleadosRegistro } from '../../interfaces/empleados';
 
 @Component({
     selector: 'app-perfil',
@@ -18,33 +20,26 @@ import { CalificacionComponent } from "../calificacion/calificacion.component";
 })
 export class PerfilComponent implements OnInit{
     datos!:FormBuilder;
-    id:any;
-    nombre:any;
-    apellido:any;
-    oficio1:any;
-    oficio2:any;
-    correo:any;
-    edad:any;
+    perfil!:EmpleadosRegistro;
+    http=inject(HttpClient)
     /*ngOnInit(){
         this.datos=this.servicioDatos.getCompartirDatos();
         console.log(this.datos);
     }*/
     
 
-    constructor(private servicioDatos:DatosService,private comm: CommService){}
+    constructor(private servicioDatos:DatosService,private comm: CommService){
 
+      this.http.post("http://127.0.0.1:8000/perfil",JSON.stringify(this.servicioDatos.getCompartirDatos('credenciales'))).subscribe((data:any)=>{
+      this.perfil=data.data;
+      console.log(this.perfil);
+      });
+    }
+
+    logout(){
+      this.servicioDatos.deleteBorrarDatos()
+    }
     ngOnInit(): void {
-        this.comm.datos$.subscribe((datos: any[]) => {
-          if (datos && datos.length > 0) {
-            const primerObjeto = datos[0];
-            this.id=primerObjeto.ID
-            this.nombre = primerObjeto.nombre;
-            this.apellido = primerObjeto.apellido;
-            this.correo = primerObjeto.correo;
-            this.oficio1 = primerObjeto.oficio1;
-            this.oficio2 = primerObjeto.oficio2;
-            this.edad=primerObjeto.edad;
-          }
-        });
+
       }
 }

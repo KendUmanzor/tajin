@@ -12,16 +12,12 @@ from django.http import HttpResponse, JsonResponse
 from.models import Empleado, Empleador
 
 def login(request, *args, **kwargs):
-    if request.method == 'GET':
-        return HttpResponse('hola')
     if request.method == 'POST':
         e=json.loads(request.body.decode('utf-8'))
-    
-        
         try:
             empleado = Empleado.objects.get(email=e['email'])
             if empleado.password == e['password']:
-                return JsonResponse({'success': True,'data':model_to_dict(empleado)})
+                return JsonResponse({'success': True,'data':{'email':empleado.email,'password':empleado.password}})
             else:
                 return JsonResponse({'Error': 'La contraseña es incorrecta'})
         except Empleado.DoesNotExist:
@@ -34,7 +30,14 @@ def login(request, *args, **kwargs):
             except Empleador.DoesNotExist:
                 return JsonResponse({'Error': 'El email no existe en la base de datos'})
 
-    return JsonResponse({'error': 'Sólo se permite el método POST'})
+def perfil(request,*args, **kwargs):
+    e=json.loads(request.body.decode('utf-8'))
+    try:
+        empleado = Empleado.objects.get(email=e['email'])
+        return JsonResponse({'data':model_to_dict(empleado)})
+    except Empleado.DoesNotExist:
+        return JsonResponse({'Error': 'El email no existe en la base de datos'})
+
 class EmpleadorViewSet(viewsets.ModelViewSet):
     queryset = Empleador.objects.all()
     serializer_class = EmpleadorSerializer

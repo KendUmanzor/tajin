@@ -2,7 +2,7 @@ from django.urls import path, include
 
 from rest_framework import routers
 from .api import empleadoViewSet
-from .views import EmpleadorViewSet, OficioViewSet, EmpleadoViewSet, CalificacionViewSet, ContratoViewSet, login
+from .views import EmpleadorViewSet, OficioViewSet, EmpleadoViewSet, CalificacionViewSet, ContratoViewSet, login, perfil
 
 router =routers.DefaultRouter()
 
@@ -19,5 +19,6 @@ router.register(r'api/contratos', ContratoViewSet, basename='contrato')
 urlpatterns = [
     path('', include(router.urls)),
     path('login',login),
+    path('perfil',perfil),
 
 ]

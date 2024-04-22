@@ -17,6 +17,6 @@ export class sidebarComponent {
 
   logout(){
     
-    localStorage.removeItem('keys');
+    localStorage.clear();
   }
 }
