@@ -69,9 +69,17 @@ class OficioViewSet(viewsets.ModelViewSet):
     serializer_class = OficioSerializer
 
 class EmpleadoViewSet(viewsets.ModelViewSet):
+
+    # def post(self, request, *args, **kwargs):
+    #     nombre = request.data.get('nombre')
+    #     apellido= request.data.get('apellido')
+    #     email = request.data.get('email')
+    #     password = request.data.get('password')
+    #     empleado = Empleado(email=email, password=password,nombre=nombre,apellido=apellido)
+    #     empleado.save()
     queryset = Empleado.objects.all()
     serializer_class = EmpleadoSerializer
-
+        
 class CalificacionViewSet(viewsets.ModelViewSet):
     queryset = Calificacion.objects.all()
     serializer_class = CalificacionSerializer
