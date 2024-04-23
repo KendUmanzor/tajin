@@ -5,7 +5,6 @@ class OficioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Oficio
         fields = '__all__'
-
 class CalificacionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Calificacion
@@ -19,26 +18,19 @@ class PersonaSerializer(serializers.ModelSerializer):
 class ContratoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contrato
-        fields = '__all__'
-
+        fields = ['id', 'ubicacion', 'pago', 'titulo', 'rubro']
 class EmpleadoSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Empleado
         fields ='__all__'
-
 class EmpleadorSerializer(serializers.ModelSerializer):
-
-
 
     class Meta:
         model = Empleador
         fields = '__all__'
-
 class PostulacionSerializer(serializers.ModelSerializer):
     empleado = EmpleadoSerializer()
     contrato = ContratoSerializer()
-
     class Meta:
         model = Postulacion
         fields = ['id', 'empleado', 'contrato', 'fecha_postulacion']
