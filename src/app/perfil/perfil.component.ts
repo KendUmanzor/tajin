@@ -39,9 +39,7 @@ export class PerfilComponent implements OnInit{
       });
     }
 
-    logout(){
-      this.servicioDatos.deleteBorrarDatos()
-    }
+  
     ngOnInit(): void {
 
       }

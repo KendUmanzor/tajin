@@ -12,6 +12,8 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from.models import Empleado, Empleador
 
+
+
 def login(request, *args, **kwargs):
     if request.method == 'POST':
         e=json.loads(request.body.decode('utf-8'))
@@ -32,12 +34,31 @@ def login(request, *args, **kwargs):
                 return JsonResponse({'Error': 'El email no existe en la base de datos'})
 
 def perfil(request,*args, **kwargs):
+<<<<<<< HEAD
     e=json.loads(request.body.decode('utf-8'))
     try:
         empleado = Empleador.objects.get(email=e['email'])
         return JsonResponse({'data':model_to_dict(empleado)})
     except Empleador.DoesNotExist:
         return JsonResponse({'Error': 'El email no existe en la base de datos'})
+=======
+    if request.method=='POST':
+        e=json.loads(request.body.decode('utf-8'))
+        try:
+            empleado = Empleado.objects.get(email=e['email'])
+            return JsonResponse({'data':model_to_dict(empleado)})
+        except Empleado.DoesNotExist:
+            return JsonResponse({'Error': 'El email no existe en la base de datos'})
+    if request.method=='DELETE':
+        e=json.loads(request.body.decode('utf-8'))
+        try:
+            empleado=Empleado.objects.get(email=e['email'])
+            empleado.delete()
+            return JsonResponse({'message': 'Empleado deleted successfully'})
+        except Empleado.DoesNotExist:
+            return JsonResponse({'Error': 'El email no existe en la base de datos'})
+    
+>>>>>>> 12027215a2952f0c94bb9b167ff59587e83ba0c1
 
 class EmpleadorViewSet(viewsets.ModelViewSet):
     queryset = Empleador.objects.all()
